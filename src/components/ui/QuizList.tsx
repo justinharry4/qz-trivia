@@ -1,15 +1,15 @@
 import { Heading, Text, Stack } from "@chakra-ui/react";
 
 import QuizCard from "./QuizCard";
-import PageLoadError from './PageLoadError';
+import PageLoadError from "./PageLoadError";
 import useQuizzes from "../../hooks/useQuizzes";
 
 const QuizList = () => {
   const { quizzes, error } = useQuizzes();
 
-  if (error) return <PageLoadError message={error} />
+  if (error) return <PageLoadError message={error} />;
 
-  if (quizzes) 
+  if (quizzes)
     return (
       <>
         <Stack mb="5" gap="2">
@@ -23,6 +23,7 @@ const QuizList = () => {
         <Stack gap="5">
           {quizzes.map((quiz) => (
             <QuizCard
+              id={quiz.id}
               key={quiz.id}
               title={quiz.title}
               description={quiz.description}

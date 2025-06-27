@@ -1,13 +1,21 @@
-import { useParams } from "react-router";
 import { Image, Stack, Text, Heading, Center, Button } from "@chakra-ui/react";
 
 import useQuiz from "../../hooks/useQuiz";
 import PageLoadError from "./PageLoadError";
 import QuizInfoTable from "./QuizInfoTable";
 
-const QuizOverview = () => {
-	const { quizId } = useParams();
-	const { quiz, error } = useQuiz(parseInt(quizId!));
+interface QuizOverviewProps {
+	quizId: number;
+	onStart: () => void;
+	isLoading: boolean;
+}
+
+const QuizOverview = ({ quizId, onStart, isLoading }: QuizOverviewProps) => {
+	const { quiz, error } = useQuiz(quizId);
+
+	const handleClick = () => {
+		onStart();
+	};
 
 	if (error) return <PageLoadError message={error} />;
 
@@ -25,7 +33,14 @@ const QuizOverview = () => {
 				<Text fontSize="sm">{quiz.description}</Text>
 				<QuizInfoTable questionCount={quiz.question_count}></QuizInfoTable>
 				<Center>
-					<Button size="sm" colorPalette="blue" variant="solid" rounded="full">
+					<Button
+						size="sm"
+						colorPalette="blue"
+						variant="solid"
+						rounded="full"
+						loading={isLoading}
+						onClick={handleClick}
+					>
 						Start Quiz
 					</Button>
 				</Center>

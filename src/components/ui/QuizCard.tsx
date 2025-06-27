@@ -1,12 +1,14 @@
 import { HStack, Card, Box, Button, Stack, Image } from "@chakra-ui/react";
+import { Link } from "react-router";
 
 interface QuizCardProps {
+  id: number;
   title: string;
   description: string;
   imageUrl: string;
 }
 
-const QuizCard = ({ title, description, imageUrl }: QuizCardProps) => {
+const QuizCard = ({ id, title, description, imageUrl }: QuizCardProps) => {
   return (
     <Card.Root
       tabIndex={0}
@@ -28,7 +30,7 @@ const QuizCard = ({ title, description, imageUrl }: QuizCardProps) => {
               variant="subtle"
               colorPalette="gray"
             >
-              Start Quiz
+              <Link to={`/quiz/${id}`}>Explore Quiz</Link>
             </Button>
           </Card.Footer>
         </Stack>

@@ -1,14 +1,19 @@
-import { Box } from "@chakra-ui/react";
-import NavBar from "./components/ui/NavBar";
+import { Routes, Route } from "react-router";
+
+import Layout from "./components/ui/Layout";
 import QuizList from "./components/ui/QuizList";
+import QuizOverview from "./components/ui/QuizOverview";
 import "./App.css";
 
 const App = () => {
   return (
-    <Box minH="100vh" bg="gray.100">
-      <NavBar />
-      <QuizList />
-    </Box>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<QuizList />} />
+
+        <Route path="quiz/:quizId" element={<QuizOverview />} />
+      </Route>
+    </Routes>
   );
 };
 

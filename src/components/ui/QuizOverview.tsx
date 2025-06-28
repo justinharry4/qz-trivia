@@ -13,10 +13,6 @@ interface QuizOverviewProps {
 const QuizOverview = ({ quizId, onStart, isLoading }: QuizOverviewProps) => {
 	const { quiz, error } = useQuiz(quizId);
 
-	const handleClick = () => {
-		onStart();
-	};
-
 	if (error) return <PageLoadError message={error} />;
 
 	if (quiz)
@@ -39,7 +35,7 @@ const QuizOverview = ({ quizId, onStart, isLoading }: QuizOverviewProps) => {
 						variant="solid"
 						rounded="full"
 						loading={isLoading}
-						onClick={handleClick}
+						onClick={onStart}
 					>
 						Start Quiz
 					</Button>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Text, Stack } from "@chakra-ui/react";
+import { Text, Stack, Button, Flex } from "@chakra-ui/react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -29,7 +29,7 @@ const QuizForm = ({ questions, onCancel }: QuizFormProps) => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<Stack gap="8">
+			<Stack gap="6">
 				<Text>
 					Question {currentIndex + 1} of {questions.length}
 				</Text>
@@ -45,6 +45,17 @@ const QuizForm = ({ questions, onCancel }: QuizFormProps) => {
 					onNext={() => setCurrentIndex(currentIndex + 1)}
 					onPrev={() => setCurrentIndex(currentIndex - 1)}
 				/>
+				<Flex direction="row">
+					<Button
+						type="button"
+						variant="subtle"
+						colorPalette="red"
+						rounded="md"
+						onClick={onCancel}
+					>
+						Cancel Quiz
+					</Button>
+				</Flex>
 			</Stack>
 		</form>
 	);

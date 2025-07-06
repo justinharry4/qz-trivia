@@ -18,13 +18,24 @@ interface QuizFormProps {
 }
 
 const QuizForm = ({ questions, onCancel }: QuizFormProps) => {
-	const { control, handleSubmit, getValues } = useForm<FormData>({
+	const { control, handleSubmit, getValues, setValue } = useForm<FormData>({
 		resolver: zodResolver(schema),
 	});
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const onSubmit = (data: FormData) => {
-		console.log(data);
+		// const answeredQuestions = [];
+		// for (const field in data) {
+		// 	const [questionNumber, questionId] = field.split("-").slice(1);
+		// 	const optionId = data[field];
+		// 	answeredQuestions.push({
+		// 		question_id: Number(questionId),
+		// 		question_number: Number(questionNumber),
+		// 		option_id: optionId,
+		// 	});
+		// }
+		// const payload = { answered_questions: answeredQuestions };
+		// console.log(payload);
 	};
 
 	return (
@@ -38,6 +49,7 @@ const QuizForm = ({ questions, onCancel }: QuizFormProps) => {
 					index={currentIndex}
 					control={control}
 					getValues={getValues}
+					setValue={setValue}
 				/>
 				<QuizFormNavigation
 					currentIndex={currentIndex}

@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import { Stack, RadioGroup, Field } from "@chakra-ui/react";
 import { Controller } from "react-hook-form";
-import type { Control, UseFormGetValues } from "react-hook-form";
+import type {
+	Control,
+	UseFormGetValues,
+	UseFormSetValue,
+} from "react-hook-form";
 
 import type { FormData } from "./QuizForm";
 import { decodeHtml } from "../../utils/utils";
@@ -11,15 +16,27 @@ interface QuestionDisplayProps {
 	index: number;
 	control: Control;
 	getValues: UseFormGetValues<FormData>;
+	setValue: UseFormSetValue<FormData>;
 }
+
+const DEFAULT_OPTION_VALUE = 0;
 
 const QuestionDisplay = ({
 	question,
 	index,
 	control,
 	getValues,
+	setValue,
 }: QuestionDisplayProps) => {
 	const fieldName = `q-${index + 1}-${question.id}`;
+	const [fieldRegistry, setFieldRegistry] = useState<string[]>([]);
+
+	useEffect(() => {
+		if (!fieldRegistry.includes(fieldName)) {
+			setValue(fieldName, DEFAULT_OPTION_VALUE);
+			setFieldRegistry([...fieldRegistry, fieldName]);
+		}
+	});
 
 	return (
 		<Field.Root>
@@ -29,11 +46,10 @@ const QuestionDisplay = ({
 			<Controller
 				name={fieldName}
 				control={control}
-				defaultValue="0"
 				render={({ field }) => (
 					<RadioGroup.Root
 						name={field.name}
-						value={String(getValues(fieldName) ?? "")}
+						value={String(getValues(fieldName))}
 						onValueChange={({ value }) => {
 							field.onChange(value);
 						}}

@@ -11,8 +11,8 @@ type Page = "overview" | "form";
 const QuizPage = () => {
 	const [currentPage, setCurrentPage] = useState<Page>("overview");
 
-	const { quizId } = useParams();
-	const parsedQuizId = parseInt(quizId!);
+	let { quizId } = useParams();
+	const parsedQuizId = Number(quizId!);
 	const { questions, error, isLoading, fetchQuestions } =
 		useQuestions(parsedQuizId);
 
@@ -38,7 +38,11 @@ const QuizPage = () => {
 				</>
 			)}
 			{!isLoading && questions && currentPage === "form" && (
-				<QuizForm questions={questions} onCancel={handleCancel} />
+				<QuizForm
+					quizId={parsedQuizId}
+					questions={questions}
+					onCancel={handleCancel}
+				/>
 			)}
 		</>
 	);

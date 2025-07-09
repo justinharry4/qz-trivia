@@ -1,9 +1,11 @@
-import useData from "./useData";
-import type { Quiz } from './useQuiz';
+// import useData from "./useData";
+import useFetch from "./useFetch";
+import { getQuizzes } from "../services/quiz-service";
+import type { Quiz } from "../services/quiz-service";
 
 const useQuizzes = () => {
-  const {data, error} = useData<Quiz[]>("/quiz/quizzes/");
-  return { quizzes: data, error }
+	const { data, error, isLoading } = useFetch<Quiz[]>(getQuizzes);
+	return { quizzes: data, error, isLoading };
 };
 
 export default useQuizzes;

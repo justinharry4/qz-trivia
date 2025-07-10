@@ -17,8 +17,11 @@ interface AnsweredQuestion {
 }
 
 export interface Result {
+	id: number;
 	quiz: Quiz;
 	answered_questions: AnsweredQuestion[];
+	total_answered: number;
+	total_correct: number;
 	percentage_score: number;
 }
 
@@ -31,5 +34,12 @@ export const createResult = (quizId: number, quizData: CreateResultPayload) => {
 		"post",
 		`/quiz/quizzes/${quizId}/results/`,
 		quizData,
+	);
+};
+
+export const getResult = (quizId: number, resultId: number) => {
+	return performApiAction<Result>(
+		"get",
+		`/quiz/quizzes/${quizId}/results/${resultId}/`,
 	);
 };

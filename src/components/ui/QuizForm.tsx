@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Text, Stack, Button, Flex } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Text, Stack } from "@chakra-ui/react";
 
 import QuestionDisplay from "./QuestionDisplay";
 import QuizFormNavigation from "./QuizFormNavigation";
@@ -24,9 +25,13 @@ const QuizForm = ({ quizId, questions, onCancel }: QuizFormProps) => {
 		resolver: zodResolver(schema),
 	});
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const { result, error, submitting, createResult } = useCreateResult();
+	const { result, submitting, createResult } = useCreateResult();
+	const navigate = useNavigate();
 
-	if (result) console.log(result);
+	if (result) {
+		navigate(`/quiz/${quizId}/results/${result.id}`);
+		return;
+	}
 
 	const onSubmit = (data: FormValues) => {
 		const answeredQuestions = [];
@@ -63,18 +68,9 @@ const QuizForm = ({ quizId, questions, onCancel }: QuizFormProps) => {
 					totalQuestions={questions.length}
 					onNext={() => setCurrentIndex(currentIndex + 1)}
 					onPrev={() => setCurrentIndex(currentIndex - 1)}
+					onCancel={onCancel}
+					isSubmitting={submitting}
 				/>
-				<Flex direction="row">
-					<Button
-						type="button"
-						variant="subtle"
-						colorPalette="red"
-						rounded="md"
-						onClick={onCancel}
-					>
-						Cancel Quiz
-					</Button>
-				</Flex>
 			</Stack>
 		</form>
 	);

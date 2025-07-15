@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import { Heading, Text, Stack, HStack, Button } from "@chakra-ui/react";
 
 import useResult from "../../hooks/useResult";
@@ -37,10 +37,10 @@ const QuizReview = () => {
 				</Stack>
 				<HStack mt="4" gap="4">
 					<Button variant="surface" colorPalette="gray" rounded="full">
-						Retake Quiz
+						<Link to={`/quizzes/${quizId}`}>Retake Quiz</Link>
 					</Button>
 					<Button colorPalette="blue" rounded="full">
-						Back to Quizzes
+						<Link to="/quizzes">Back to Quizzes</Link>
 					</Button>
 				</HStack>
 			</Stack>

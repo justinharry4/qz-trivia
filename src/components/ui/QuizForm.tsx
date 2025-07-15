@@ -30,7 +30,7 @@ const QuizForm = ({ quizId, questions, onCancel }: QuizFormProps) => {
 
 	useEffect(() => {
 		if (result) {
-			navigate(`/quiz/${quizId}/results/${result.id}`);
+			navigate(`/quizzes/${quizId}/results/${result.id}`);
 			return;
 		}
 	}, [result, navigate]);

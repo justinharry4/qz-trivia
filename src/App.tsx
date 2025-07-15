@@ -14,10 +14,17 @@ const App = () => {
 			<Route element={<Layout />}>
 				<Route index element={<QuizList />} />
 
-				<Route path="quiz/:quizId" element={<QuizPage />} />
-				<Route path="quiz/:quizId/results/:resultId" element={<QuizResult />} />
+				<Route path="quizzes" element={<QuizList />} />
+
+				<Route path="quizzes/:quizId" element={<QuizPage />} />
+
 				<Route
-					path="quiz/:quizId/results/:resultId/review"
+					path="quizzes/:quizId/results/:resultId"
+					element={<QuizResult />}
+				/>
+
+				<Route
+					path="quizzes/:quizId/results/:resultId/review"
 					element={<QuizReview />}
 				/>
 			</Route>

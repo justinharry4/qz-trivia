@@ -30,7 +30,7 @@ const QuizCard = ({ id, title, description, imageUrl }: QuizCardProps) => {
               variant="subtle"
               colorPalette="gray"
             >
-              <Link to={`/quiz/${id}`}>Explore Quiz</Link>
+              <Link to={`/quizzes/${id}`}>Explore Quiz</Link>
             </Button>
           </Card.Footer>
         </Stack>

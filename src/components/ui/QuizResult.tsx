@@ -42,12 +42,12 @@ const QuizResult = () => {
 				</Flex>
 				<Stack width="45%" alignItems="stretch" mt="6">
 					<Button asChild colorPalette="blue" rounded="full">
-						<Link to={`/quiz/${quizId}/results/${resultId}/review`}>
+						<Link to={`/quizzes/${quizId}/results/${resultId}/review`}>
 							Review Quiz
 						</Link>
 					</Button>
 					<Button asChild variant="surface" colorPalette="gray" rounded="full">
-						<Link to="/">Back to Quizzes</Link>
+						<Link to="/quizzes">Back to Quizzes</Link>
 					</Button>
 				</Stack>
 			</Stack>

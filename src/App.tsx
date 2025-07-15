@@ -4,6 +4,8 @@ import Layout from "./components/ui/Layout";
 import QuizList from "./components/ui/QuizList";
 import QuizPage from "./components/ui/QuizPage";
 import QuizResult from "./components/ui/QuizResult";
+import QuizReview from "./components/ui/QuizReview";
+
 import "./App.css";
 
 const App = () => {
@@ -14,6 +16,10 @@ const App = () => {
 
 				<Route path="quiz/:quizId" element={<QuizPage />} />
 				<Route path="quiz/:quizId/results/:resultId" element={<QuizResult />} />
+				<Route
+					path="quiz/:quizId/results/:resultId/review"
+					element={<QuizReview />}
+				/>
 			</Route>
 		</Routes>
 	);

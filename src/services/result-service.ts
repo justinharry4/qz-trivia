@@ -8,10 +8,10 @@ interface SimpleAnsweredQuestion {
 	option_id: number;
 }
 
-interface AnsweredQuestion {
+export interface AnsweredQuestion {
 	id: number;
 	question: Question;
-	selected_option: Option;
+	selected_option: Option | null;
 	correct_option: Option;
 	question_number: number;
 }

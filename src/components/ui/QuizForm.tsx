@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { z } from "zod";
@@ -28,10 +28,12 @@ const QuizForm = ({ quizId, questions, onCancel }: QuizFormProps) => {
 	const { result, submitting, createResult } = useCreateResult();
 	const navigate = useNavigate();
 
-	if (result) {
-		navigate(`/quiz/${quizId}/results/${result.id}`);
-		return;
-	}
+	useEffect(() => {
+		if (result) {
+			navigate(`/quiz/${quizId}/results/${result.id}`);
+			return;
+		}
+	}, [result, navigate]);
 
 	const onSubmit = (data: FormValues) => {
 		const answeredQuestions = [];

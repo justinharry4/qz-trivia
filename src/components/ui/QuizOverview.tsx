@@ -25,7 +25,7 @@ const QuizOverview = ({ quizId, onStart, isLoading }: QuizOverviewProps) => {
 					height="200px"
 					rounded="xl"
 				/>
-				<Heading>{quiz.title}</Heading>
+				<Heading as="h1">{quiz.title}</Heading>
 				<Text fontSize="sm">{quiz.description}</Text>
 				<QuizInfoTable questionCount={quiz.question_count}></QuizInfoTable>
 				<Center>

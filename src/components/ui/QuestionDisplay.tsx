@@ -7,16 +7,16 @@ import type {
 	UseFormSetValue,
 } from "react-hook-form";
 
-import type { FormData } from "./QuizForm";
+import type { FormValues } from "./QuizForm";
 import { decodeHtml } from "../../utils/utils";
-import type { Question } from "../../hooks/useQuestions";
+import type { Question } from "../../services/question-service";
 
 interface QuestionDisplayProps {
 	question: Question;
 	index: number;
 	control: Control;
-	getValues: UseFormGetValues<FormData>;
-	setValue: UseFormSetValue<FormData>;
+	getValues: UseFormGetValues<FormValues>;
+	setValue: UseFormSetValue<FormValues>;
 }
 
 const DEFAULT_OPTION_VALUE = 0;

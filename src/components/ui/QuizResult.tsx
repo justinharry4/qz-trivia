@@ -17,15 +17,14 @@ const QuizResult = () => {
 	if (result) {
 		return (
 			<Stack alignItems="center">
-				<Heading
-					fontSize="3xl"
-					alignSelf={{ base: "flex-start", md: "center" }}
-				>
-					Quiz Result
-				</Heading>
-				<Text alignSelf={{ base: "flex-start", md: "center" }}>
-					You've completed the '{result.quiz.title}' quiz. Here's how you did:
-				</Text>
+				<Stack width="100%" alignItems={{ base: "flex-start", md: "center" }}>
+					<Heading as="h1" fontSize="3xl" fontWeight="bolder">
+						Quiz Result
+					</Heading>
+					<Text>
+						You've completed the '{result.quiz.title}' quiz. Here's how you did:
+					</Text>
+				</Stack>
 				<Flex
 					direction={{ base: "column", sm: "row" }}
 					mt="5"
@@ -42,8 +41,10 @@ const QuizResult = () => {
 					/>
 				</Flex>
 				<Stack width="45%" alignItems="stretch" mt="6">
-					<Button colorPalette="blue" rounded="full">
-						Review Quiz
+					<Button asChild colorPalette="blue" rounded="full">
+						<Link to={`/quiz/${quizId}/results/${resultId}/review`}>
+							Review Quiz
+						</Link>
 					</Button>
 					<Button asChild variant="surface" colorPalette="gray" rounded="full">
 						<Link to="/">Back to Quizzes</Link>

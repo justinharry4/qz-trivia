@@ -1,4 +1,6 @@
 import { List, Text, Flex, Link, HStack, Box } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router";
+
 import QzBrandText from "../../assets/qz-brand-text.svg?react";
 
 interface WhiteLinkProps {
@@ -34,7 +36,7 @@ const Footer = () => (
 		>
 			<List.Root variant="plain">
 				<List.Item>
-					<WhiteLink>About Us</WhiteLink>
+					<RouterLink to="/about">About Us</RouterLink>
 				</List.Item>
 				<List.Item>
 					<WhiteLink>Contact</WhiteLink>

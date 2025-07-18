@@ -1,7 +1,8 @@
-import { Button, Center } from "@chakra-ui/react";
+import { Button, Center, Box } from "@chakra-ui/react";
 import { Link } from "react-router";
 
 import QuizList from "./QuizList";
+import About from "./About";
 
 const HOME_QUIZ_COUNT = 7;
 
@@ -15,6 +16,9 @@ const Home = () => {
 					</Button>
 				</Center>
 			</QuizList>
+			<Box mt="8">
+				<About />
+			</Box>
 		</>
 	);
 };

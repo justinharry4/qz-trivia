@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router";
 
 import Layout from "./components/ui/Layout";
 import Home from "./components/ui/Home";
+import About from "./components/ui/About";
 import QuizList from "./components/ui/QuizList";
 import QuizPage from "./components/ui/QuizPage";
 import QuizResult from "./components/ui/QuizResult";
@@ -14,6 +15,8 @@ const App = () => {
 		<Routes>
 			<Route element={<Layout />}>
 				<Route index element={<Home />} />
+
+				<Route path="about" element={<About />} />
 
 				<Route path="quizzes" element={<QuizList />} />
 

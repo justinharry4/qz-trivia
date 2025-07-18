@@ -4,8 +4,13 @@ import QuizCard from "./QuizCard";
 import PageLoadError from "./PageLoadError";
 import useQuizzes from "../../hooks/useQuizzes";
 
-const QuizList = () => {
-  const { quizzes, error } = useQuizzes();
+interface QuizListProps {
+  children?: React.ReactNode;
+  quizCount?: number;
+}
+
+const QuizList = ({ children, quizCount }: QuizListProps) => {
+  const { quizzes, error } = useQuizzes(quizCount);
 
   if (error) return <PageLoadError message={error} />;
 
@@ -31,6 +36,7 @@ const QuizList = () => {
             />
           ))}
         </Stack>
+        {children}
       </>
     );
 };

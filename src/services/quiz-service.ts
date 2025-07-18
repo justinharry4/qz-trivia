@@ -8,8 +8,11 @@ export interface Quiz {
 	question_count: number;
 }
 
-export const getQuizzes = () => {
-	return performApiAction<Quiz[]>("get", "/quiz/quizzes/");
+export const getQuizzes = (limit: number | null) => {
+	const queryParams = limit ? { limit } : {};
+	return performApiAction<Quiz[]>("get", "/quiz/quizzes/", null, {
+		params: queryParams,
+	});
 };
 
 export const getQuiz = (quizId: number) => {

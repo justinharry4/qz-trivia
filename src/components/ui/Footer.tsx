@@ -18,11 +18,13 @@ const Footer = () => (
 		mt="24"
 		py={{ base: "4", sm: "8" }}
 		px={{ base: "8", sm: "12" }}
+		columnGap={{ sm: "10%" }}
 		bg="blue.600"
 		gap="5"
 		color="white"
 		position="relative"
 		wrap="wrap"
+		justifyContent="center"
 	>
 		<Flex
 			asChild
@@ -30,9 +32,9 @@ const Footer = () => (
 			justifyContent="space-between"
 			direction={{ base: "column", sm: "row" }}
 			alignSelf={{ base: "flex-start", sm: "center" }}
-			width={{ base: "35%", sm: "70%" }}
-			mx={{ sm: "auto" }}
-			grow={{ base: "1", sm: "0" }}
+			grow={{ base: "1", sm: "1" }}
+			width={{ base: "35%", sm: "100%" }}
+			px={{ base: "0px", sm: "3%", md: "15%" }}
 		>
 			<List.Root variant="plain">
 				<List.Item>
@@ -52,7 +54,7 @@ const Footer = () => (
 		<Box width="200px">
 			<QzBrandText style={{ width: "100%", height: "100%" }} />
 		</Box>
-		<Text mx="auto">&copy; QZ Trivia 2025. All rights reserved.</Text>
+		<Text>&copy; QZ Trivia 2025. All rights reserved.</Text>
 	</HStack>
 );
 

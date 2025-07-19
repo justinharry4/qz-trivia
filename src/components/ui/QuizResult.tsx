@@ -3,6 +3,7 @@ import { Heading, Text, Stack, Button, Flex } from "@chakra-ui/react";
 
 import useResult from "../../hooks/useResult";
 import StatCard from "./StatCard";
+import LoadingIndicator from "./LoadingIndicator";
 import PageLoadError from "./PageLoadError";
 
 const QuizResult = () => {
@@ -10,7 +11,9 @@ const QuizResult = () => {
 	const quizId = Number(params.quizId);
 	const resultId = Number(params.resultId);
 
-	const { result, error } = useResult(quizId, resultId);
+	const { result, error, isLoading } = useResult(quizId, resultId);
+
+	if (isLoading) return <LoadingIndicator />;
 
 	if (error) return <PageLoadError message={error} />;
 

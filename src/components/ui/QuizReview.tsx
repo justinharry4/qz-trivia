@@ -4,6 +4,7 @@ import { Heading, Text, Stack, HStack, Button } from "@chakra-ui/react";
 import useResult from "../../hooks/useResult";
 import QuestionReviewDisplay from "./QuestionReviewDisplay";
 import QuizResultTable from "./QuizResultTable";
+import LoadingIndicator from "./LoadingIndicator";
 import PageLoadError from "./PageLoadError";
 
 const QuizReview = () => {
@@ -11,7 +12,9 @@ const QuizReview = () => {
 	const quizId = Number(params.quizId);
 	const resultId = Number(params.resultId);
 
-	const { result, error } = useResult(quizId, resultId);
+	const { result, error, isLoading } = useResult(quizId, resultId);
+
+	if (isLoading) return <LoadingIndicator />;
 
 	if (error) return <PageLoadError message={error} />;
 

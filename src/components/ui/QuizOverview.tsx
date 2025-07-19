@@ -1,6 +1,7 @@
 import { Image, Stack, Text, Heading, Center, Button } from "@chakra-ui/react";
 
 import useQuiz from "../../hooks/useQuiz";
+import LoadingIndicator from "./LoadingIndicator";
 import PageLoadError from "./PageLoadError";
 import QuizInfoTable from "./QuizInfoTable";
 
@@ -11,7 +12,9 @@ interface QuizOverviewProps {
 }
 
 const QuizOverview = ({ quizId, onStart, isLoading }: QuizOverviewProps) => {
-	const { quiz, error } = useQuiz(quizId);
+	const { quiz, error, isLoading: isLoadingQuiz } = useQuiz(quizId);
+
+	if (isLoadingQuiz) return <LoadingIndicator />;
 
 	if (error) return <PageLoadError message={error} />;
 

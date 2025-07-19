@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { AxiosError } from "axios";
 import type { AxiosResponse } from "axios";
 import { AxiosCanceledError } from "../services/api-client";
 
 const useResource = <T>() => {
   const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<AxiosError | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleResponse = (request: Promise<AxiosResponse<T>>) => {
@@ -13,12 +14,12 @@ const useResource = <T>() => {
     request
       .then((res) => {
         setData(res.data);
-        setError("");
+        setError(null);
         setIsLoading(false);
       })
       .catch((err) => {
         if (err instanceof AxiosCanceledError) return;
-        setError(err.message);
+        setError(err);
         setData(null);
         setIsLoading(false);
       });

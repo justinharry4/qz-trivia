@@ -2,7 +2,7 @@ import { Heading, Text, Stack } from "@chakra-ui/react";
 
 import QuizCard from "./QuizCard";
 import LoadingIndicator from "./LoadingIndicator";
-import PageLoadError from "./PageLoadError";
+import InternalError from "./InternalError";
 import useQuizzes from "../../hooks/useQuizzes";
 
 interface QuizListProps {
@@ -15,7 +15,7 @@ const QuizList = ({ children, quizCount }: QuizListProps) => {
 
   if (isLoading) return <LoadingIndicator />;
 
-  if (error) return <PageLoadError message={error} />;
+  if (error) return <InternalError />;
 
   if (quizzes)
     return (

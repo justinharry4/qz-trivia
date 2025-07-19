@@ -7,6 +7,7 @@ import QuizList from "./components/ui/QuizList";
 import QuizPage from "./components/ui/QuizPage";
 import QuizResult from "./components/ui/QuizResult";
 import QuizReview from "./components/ui/QuizReview";
+import NotFound from "./components/ui/NotFound";
 
 import "./App.css";
 
@@ -31,6 +32,8 @@ const App = () => {
 					path="quizzes/:quizId/results/:resultId/review"
 					element={<QuizReview />}
 				/>
+
+				<Route path="*" element={<NotFound />} />
 			</Route>
 		</Routes>
 	);

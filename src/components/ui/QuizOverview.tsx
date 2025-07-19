@@ -2,8 +2,9 @@ import { Image, Stack, Text, Heading, Center, Button } from "@chakra-ui/react";
 
 import useQuiz from "../../hooks/useQuiz";
 import LoadingIndicator from "./LoadingIndicator";
-import PageLoadError from "./PageLoadError";
 import QuizInfoTable from "./QuizInfoTable";
+import NotFound from "./NotFound";
+import InternalError from "./InternalError";
 
 interface QuizOverviewProps {
 	quizId: number;
@@ -16,7 +17,10 @@ const QuizOverview = ({ quizId, onStart, isLoading }: QuizOverviewProps) => {
 
 	if (isLoadingQuiz) return <LoadingIndicator />;
 
-	if (error) return <PageLoadError message={error} />;
+	if (error) {
+		if (error.status === 404) return <NotFound />;
+		return <InternalError />;
+	}
 
 	if (quiz)
 		return (

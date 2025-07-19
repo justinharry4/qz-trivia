@@ -4,7 +4,8 @@ import { Heading, Text, Stack, Button, Flex } from "@chakra-ui/react";
 import useResult from "../../hooks/useResult";
 import StatCard from "./StatCard";
 import LoadingIndicator from "./LoadingIndicator";
-import PageLoadError from "./PageLoadError";
+import NotFound from "./NotFound";
+import InternalError from "./InternalError";
 
 const QuizResult = () => {
 	const params = useParams();
@@ -15,7 +16,10 @@ const QuizResult = () => {
 
 	if (isLoading) return <LoadingIndicator />;
 
-	if (error) return <PageLoadError message={error} />;
+	if (error) {
+		if (error.status === 404) return <NotFound />;
+		return <InternalError />;
+	}
 
 	if (result) {
 		return (

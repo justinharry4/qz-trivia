@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useParams } from "react-router";
+import { Text } from "@chakra-ui/react";
 
 import QuizOverview from "./QuizOverview";
 import QuizForm from "./QuizForm";
-import PageLoadError from "./PageLoadError";
 import useQuestions from "../../hooks/useQuestions";
 
 type Page = "overview" | "form";
@@ -34,7 +34,12 @@ const QuizPage = () => {
 						onStart={handleStart}
 						isLoading={isLoading}
 					/>
-					{error && <PageLoadError message={error} />}
+					{error && (
+						<Text color="red" fontStyle="italic" mt="6">
+							We're unable to retrieve quiz data right now. Please try again
+							soon.
+						</Text>
+					)}
 				</>
 			)}
 			{!isLoading && questions && currentPage === "form" && (

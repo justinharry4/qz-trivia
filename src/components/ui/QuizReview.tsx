@@ -5,7 +5,8 @@ import useResult from "../../hooks/useResult";
 import QuestionReviewDisplay from "./QuestionReviewDisplay";
 import QuizResultTable from "./QuizResultTable";
 import LoadingIndicator from "./LoadingIndicator";
-import PageLoadError from "./PageLoadError";
+import NotFound from "./NotFound";
+import InternalError from "./InternalError";
 
 const QuizReview = () => {
 	const params = useParams();
@@ -16,7 +17,10 @@ const QuizReview = () => {
 
 	if (isLoading) return <LoadingIndicator />;
 
-	if (error) return <PageLoadError message={error} />;
+	if (error) {
+		if (error.status === 404) return <NotFound />;
+		return <InternalError />;
+	}
 
 	if (result)
 		return (

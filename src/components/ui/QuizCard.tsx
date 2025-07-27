@@ -35,7 +35,7 @@ const QuizCard = ({ id, title, description, imageUrl }: QuizCardProps) => {
           </Card.Footer>
         </Stack>
         <Box maxW="30%">
-          <Image src={imageUrl} alt={title + "art"} rounded="xl" width="100%" />
+          <Image src={imageUrl} alt={title + " art"} rounded="xl" width="100%" />
         </Box>
       </HStack>
     </Card.Root>

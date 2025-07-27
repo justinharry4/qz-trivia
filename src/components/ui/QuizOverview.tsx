@@ -27,7 +27,7 @@ const QuizOverview = ({ quizId, onStart, isLoading }: QuizOverviewProps) => {
 			<Stack gap="3">
 				<Image
 					src={quiz.cover_image}
-					alt={quiz.title + "art"}
+					alt={quiz.title + " art"}
 					width="100%"
 					height="200px"
 					rounded="xl"

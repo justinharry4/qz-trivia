@@ -3,7 +3,9 @@ import type { AxiosRequestConfig, Method, AxiosResponse } from "axios";
 
 export const AxiosCanceledError = CanceledError;
 
-const apiClient = axios.create({ baseURL: "http://localhost:8000" });
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
+const apiClient = axios.create({ baseURL: API_URL });
 
 export interface ApiActionResult<T> {
 	request: Promise<AxiosResponse<T>>;

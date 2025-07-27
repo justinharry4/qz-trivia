@@ -1,7 +1,6 @@
 import { Heading, Stack, Text, Link, Image } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
 
-import ErrorImage from "./ErrorImage";
 import Vecteezy from "./Vecteezy";
 import internalError from "../../assets/internal-error.png";
 

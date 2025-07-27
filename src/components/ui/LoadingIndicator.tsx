@@ -1,4 +1,4 @@
-import { Box, Spinner, Center } from "@chakra-ui/react";
+import { Spinner, Center } from "@chakra-ui/react";
 
 interface LoadingIndicatorProps {
 	boxWidth?: string;

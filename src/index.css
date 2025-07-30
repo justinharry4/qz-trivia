@@ -1,7 +1,7 @@
 a:focus {
-	outline-width: 0px !important;
+  outline-width: 0px !important;
 }
 
 a:focus-visible {
-	outline-width: 2px !important;
+  outline-width: 2px !important;
 }

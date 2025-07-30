@@ -15,67 +15,67 @@ const schema = z.record(z.coerce.number().optional());
 export type FormValues = z.infer<typeof schema>;
 
 interface QuizFormProps {
-	quizId: Number;
-	questions: Question[];
-	onCancel: () => void;
+  quizId: Number;
+  questions: Question[];
+  onCancel: () => void;
 }
 
 const QuizForm = ({ quizId, questions, onCancel }: QuizFormProps) => {
-	const { control, handleSubmit, getValues, setValue } = useForm<FormValues>({
-		resolver: zodResolver(schema),
-	});
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const { result, submitting, createResult } = useCreateResult();
-	const navigate = useNavigate();
+  const { control, handleSubmit, getValues, setValue } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+  });
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const { result, submitting, createResult } = useCreateResult();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (result) {
-			navigate(`/quizzes/${quizId}/results/${result.id}`);
-			return;
-		}
-	}, [result, navigate]);
+  useEffect(() => {
+    if (result) {
+      navigate(`/quizzes/${quizId}/results/${result.id}`);
+      return;
+    }
+  }, [result, navigate]);
 
-	const onSubmit = (data: FormValues) => {
-		const answeredQuestions = [];
+  const onSubmit = (data: FormValues) => {
+    const answeredQuestions = [];
 
-		for (const field in data) {
-			const [questionNumber, questionId] = field.split("-").slice(1);
-			const optionId = data[field];
-			answeredQuestions.push({
-				question_id: Number(questionId),
-				question_number: Number(questionNumber),
-				option_id: optionId,
-			});
-		}
+    for (const field in data) {
+      const [questionNumber, questionId] = field.split("-").slice(1);
+      const optionId = data[field];
+      answeredQuestions.push({
+        question_id: Number(questionId),
+        question_number: Number(questionNumber),
+        option_id: optionId,
+      });
+    }
 
-		const payload = { answered_questions: answeredQuestions };
-		createResult(quizId, payload);
-	};
+    const payload = { answered_questions: answeredQuestions };
+    createResult(quizId, payload);
+  };
 
-	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<Stack gap="6">
-				<Text>
-					Question {currentIndex + 1} of {questions.length}
-				</Text>
-				<QuestionDisplay
-					question={questions[currentIndex]}
-					index={currentIndex}
-					control={control}
-					getValues={getValues}
-					setValue={setValue}
-				/>
-				<QuizFormNavigation
-					currentIndex={currentIndex}
-					totalQuestions={questions.length}
-					onNext={() => setCurrentIndex(currentIndex + 1)}
-					onPrev={() => setCurrentIndex(currentIndex - 1)}
-					onCancel={onCancel}
-					isSubmitting={submitting}
-				/>
-			</Stack>
-		</form>
-	);
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Stack gap="6">
+        <Text>
+          Question {currentIndex + 1} of {questions.length}
+        </Text>
+        <QuestionDisplay
+          question={questions[currentIndex]}
+          index={currentIndex}
+          control={control}
+          getValues={getValues}
+          setValue={setValue}
+        />
+        <QuizFormNavigation
+          currentIndex={currentIndex}
+          totalQuestions={questions.length}
+          onNext={() => setCurrentIndex(currentIndex + 1)}
+          onPrev={() => setCurrentIndex(currentIndex - 1)}
+          onCancel={onCancel}
+          isSubmitting={submitting}
+        />
+      </Stack>
+    </form>
+  );
 };
 
 export default QuizForm;

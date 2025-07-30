@@ -12,31 +12,31 @@ import NotFound from "./components/ui/NotFound";
 import "./App.css";
 
 const App = () => {
-	return (
-		<Routes>
-			<Route element={<Layout />}>
-				<Route index element={<Home />} />
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
 
-				<Route path="about" element={<About />} />
+        <Route path="about" element={<About />} />
 
-				<Route path="quizzes" element={<QuizList />} />
+        <Route path="quizzes" element={<QuizList />} />
 
-				<Route path="quizzes/:quizId" element={<QuizPage />} />
+        <Route path="quizzes/:quizId" element={<QuizPage />} />
 
-				<Route
-					path="quizzes/:quizId/results/:resultId"
-					element={<QuizResult />}
-				/>
+        <Route
+          path="quizzes/:quizId/results/:resultId"
+          element={<QuizResult />}
+        />
 
-				<Route
-					path="quizzes/:quizId/results/:resultId/review"
-					element={<QuizReview />}
-				/>
+        <Route
+          path="quizzes/:quizId/results/:resultId/review"
+          element={<QuizReview />}
+        />
 
-				<Route path="*" element={<NotFound />} />
-			</Route>
-		</Routes>
-	);
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
